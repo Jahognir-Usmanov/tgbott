@@ -216,7 +216,7 @@ def get_accept(message, full_text):
 
     # Если пользователь нажал "подтвердить"
     if user_answer == 'Confirm':
-        admin_id = -1002388355295
+        admin_id = -4634068119
         # очистить корзину пользователя
         database.delete_product_from_cart(user_id)
         user_info = database.get_user_number_name(user_id)
