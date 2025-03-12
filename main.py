@@ -4,7 +4,7 @@ import database
 from rich import print
 from telebot import types
 
-bot = telebot.TeleBot('7536030659:AAHFlxvHwHEZ__yx-3ELcqvKctt08uJ_4bM')
+bot = telebot.TeleBot('8096141474:AAFIij09SktiKiLpd-JOe9KYK014mmlRK9w')
 
 users = {}
 
