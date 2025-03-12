@@ -277,34 +277,7 @@ def get_user_product(call):
         bot.send_message(user_id, 'Select quantity 🔢:', reply_markup=buttons.choose_product_count())
     else:
         bot.send_message(user_id, "Sorry, product not found")
-
-
-
-import threading
-from flask import Flask
-import telebot
-
-TOKEN = "8096141474:AAFIij09SktiKiLpd-JOe9KYK014mmlRK9w"
-bot = telebot.TeleBot(TOKEN)
-
-# Фейковый веб-сервер для Render
-app = Flask(__name__)
-
-# Функция запуска бота в отдельном потоке
-def run_bot():
-    bot.infinity_polling(timeout=60, long_polling_timeout=10)
-
-# Фейковый сервер для Render
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Бот работает!"
-
-# Запуск бота в отдельном потоке
-thread = threading.Thread(target=run_bot)
-thread.start()
-
-# Запуск фейкового сервера
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000, threaded=True)
+        
+        
+        
+bot.infinity_polling()
