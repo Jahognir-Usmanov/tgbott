@@ -280,5 +280,28 @@ def get_user_product(call):
 
 
 
+import threading
+from flask import Flask
+import telebot
+
+TOKEN = "8096141474:AAFIij09SktiKiLpd-JOe9KYK014mmlRK9w"
+bot = telebot.TeleBot(TOKEN)
+
+# Фейковый веб-сервер для Render
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Бот работает!"
+
+# Запуск бота в отдельном потоке
+def start_bot():
+    bot.polling(none_stop=True, timeout=60)
+
+threading.Thread(target=start_bot).start()
+
+# Запуск веб-сервера на порту 10000
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
 
 bot.infinity_polling()
