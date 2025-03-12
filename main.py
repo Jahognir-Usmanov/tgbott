@@ -290,18 +290,21 @@ bot = telebot.TeleBot(TOKEN)
 # Фейковый веб-сервер для Render
 app = Flask(__name__)
 
+# Функция запуска бота в отдельном потоке
+def run_bot():
+    bot.infinity_polling(timeout=60, long_polling_timeout=10)
+
+# Фейковый сервер для Render
+app = Flask(__name__)
+
 @app.route('/')
 def home():
     return "Бот работает!"
 
 # Запуск бота в отдельном потоке
-def start_bot():
-    bot.polling(none_stop=True, timeout=60)
+thread = threading.Thread(target=run_bot)
+thread.start()
 
-threading.Thread(target=start_bot).start()
-
-# Запуск веб-сервера на порту 10000
+# Запуск фейкового сервера
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
-
-bot.infinity_polling()
+    app.run(host="0.0.0.0", port=10000, threaded=True)
